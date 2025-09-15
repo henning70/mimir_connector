@@ -14,9 +14,9 @@ var (
 )
 
 const (
-	TracesToTracesStability   = component.StabilityLevelBeta
+	// TracesToTracesStability   = component.StabilityLevelBeta
 	MetricsToMetricsStability = component.StabilityLevelBeta
-	LogsToLogsStability       = component.StabilityLevelBeta
+	// LogsToLogsStability       = component.StabilityLevelBeta
 )
 
 type Config struct{}
@@ -35,9 +35,9 @@ func NewFactory() connector.Factory {
 	return connector.NewFactory(
 		Type,
 		createDefaultConfig,
-		connector.WithTracesToTraces(createTracesToTraces, TracesToTracesStability),
+		// connector.WithTracesToTraces(createTracesToTraces, TracesToTracesStability),
 		connector.WithMetricsToMetrics(createMetricsToMetrics, MetricsToMetricsStability),
-		connector.WithLogsToLogs(createLogsToLogs, LogsToLogsStability),
+		// connector.WithLogsToLogs(createLogsToLogs, LogsToLogsStability),
 	)
 }
 
@@ -46,14 +46,14 @@ func createDefaultConfig() component.Config {
 }
 
 // createTracesToTraces creates a trace receiver based on provided config.
-func createTracesToTraces(
-	_ context.Context,
-	_ connector.Settings,
-	_ component.Config,
-	nextConsumer consumer.Traces,
-) (connector.Traces, error) {
-	return &validate{Traces: nextConsumer}, nil
-}
+// func createTracesToTraces(
+// 	_ context.Context,
+// 	_ connector.Settings,
+// 	_ component.Config,
+// 	nextConsumer consumer.Traces,
+// ) (connector.Traces, error) {
+// 	return &validate{Traces: nextConsumer}, nil
+// }
 
 // createMetricsToMetrics creates a metrics receiver based on provided config.
 func createMetricsToMetrics(
@@ -67,14 +67,14 @@ func createMetricsToMetrics(
 }
 
 // createLogsToLogs creates a log receiver based on provided config.
-func createLogsToLogs(
-	_ context.Context,
-	_ connector.Settings,
-	_ component.Config,
-	nextConsumer consumer.Logs,
-) (connector.Logs, error) {
-	return &validate{Logs: nextConsumer}, nil
-}
+// func createLogsToLogs(
+// 	_ context.Context,
+// 	_ connector.Settings,
+// 	_ component.Config,
+// 	nextConsumer consumer.Logs,
+// ) (connector.Logs, error) {
+// 	return &validate{Logs: nextConsumer}, nil
+// }
 
 func (c *validate) Capabilities() consumer.Capabilities {
 	return consumer.Capabilities{MutatesData: false}
